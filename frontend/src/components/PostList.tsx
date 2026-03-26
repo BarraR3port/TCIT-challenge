@@ -55,7 +55,7 @@ export default function PostList() {
 									onClick={() => {
 										dispatch(deletePost(post.id));
 									}}
-									className="rounded-md border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-100 hover:border-red-300"
+									className="rounded-md border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-100 hover:border-red-300 cursor-pointer"
 								>
 									Eliminar
 								</button>
