@@ -12,7 +12,7 @@ export default function PostList() {
 
 	if (loading) {
 		return (
-			<div className="flex justify-center py-12">
+			<div className="flex justify-center py-14">
 				<div className="h-8 w-8 animate-spin rounded-full border-4 border-teal-600 border-t-transparent" />
 			</div>
 		);
@@ -20,7 +20,7 @@ export default function PostList() {
 
 	if (filteredPosts.length === 0) {
 		return (
-			<div className="rounded-lg border border-zinc-200 bg-zinc-50 py-10 text-center text-sm text-zinc-500">
+			<div className="px-4 py-12 text-center text-sm text-zinc-500">
 				{filter
 					? "No se encontraron posts con ese nombre."
 					: "No hay posts aún. ¡Crea uno!"}
@@ -29,33 +29,42 @@ export default function PostList() {
 	}
 
 	return (
-		<div className="overflow-hidden rounded-lg border border-zinc-200 shadow-sm">
+		<div className="overflow-x-auto">
 			<table className="w-full text-left text-sm">
 				<thead>
-					<tr className="border-b border-zinc-200 bg-zinc-50">
-						<th className="px-4 py-3 font-semibold text-zinc-700">Nombre</th>
-						<th className="px-4 py-3 font-semibold text-zinc-700">
+					<tr className="border-b border-zinc-200 bg-zinc-200/90">
+						<th className="px-4 py-3 font-semibold text-zinc-800">Nombre</th>
+						<th className="px-4 py-3 font-semibold text-zinc-800">
 							Descripción
 						</th>
-						<th className="px-4 py-3 text-right font-semibold text-zinc-700">
+						<th className="px-4 py-3 text-right font-semibold text-zinc-800">
 							Acción
 						</th>
 					</tr>
 				</thead>
-				<tbody className="divide-y divide-zinc-100">
-					{filteredPosts.map((post) => (
-						<tr key={post.id} className="transition hover:bg-zinc-50">
-							<td className="px-4 py-3 font-medium text-zinc-900">
+				<tbody>
+					{filteredPosts.map((post, index) => (
+						<tr
+							key={post.id}
+							className={
+								index % 2 === 0
+									? "bg-white hover:bg-zinc-50/80"
+									: "bg-zinc-50 hover:bg-zinc-100/80"
+							}
+						>
+							<td className="border-b border-zinc-100 px-4 py-3 font-medium text-zinc-900">
 								{post.name}
 							</td>
-							<td className="px-4 py-3 text-zinc-600">{post.description}</td>
-							<td className="px-4 py-3 text-right">
+							<td className="border-b border-zinc-100 px-4 py-3 text-zinc-600">
+								{post.description}
+							</td>
+							<td className="border-b border-zinc-100 px-4 py-3 text-right">
 								<button
 									type="button"
 									onClick={() => {
 										dispatch(deletePost(post.id));
 									}}
-									className="rounded-md border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:bg-red-100 hover:border-red-300 cursor-pointer"
+									className="rounded-md border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-medium text-red-600 transition hover:border-red-300 hover:bg-red-100 cursor-pointer"
 								>
 									Eliminar
 								</button>
