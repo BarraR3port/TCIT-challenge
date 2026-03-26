@@ -78,11 +78,6 @@ export const postsSlice = createSlice({
 				state.loading = false;
 				state.error = action.error.message ?? "Unknown error";
 			})
-			// Create
-			.addCase(createPost.fulfilled, (state, action) => {
-				state.items.unshift(action.payload);
-			})
-			// Delete
 			.addCase(deletePost.fulfilled, (state, action) => {
 				state.items = state.items.filter(
 					(post) => post.id !== action.payload.id,

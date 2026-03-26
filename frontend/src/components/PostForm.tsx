@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch } from "../store/hooks";
-import { createPost } from "../store/postsSlice";
+import { createPost, fetchPosts } from "../store/postsSlice";
 
 export default function PostForm() {
 	const dispatch = useAppDispatch();
@@ -10,16 +10,16 @@ export default function PostForm() {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (!name.trim() || !description.trim()) return;
-		await dispatch(
-			createPost({ name: name.trim(), description: description.trim() }),
-		).then((res) => {
-			if (res.meta.requestStatus === "fulfilled" && res.payload) {
-				setName("");
-				setDescription("");
-			} else {
-				console.error(res.payload);
-			}
-		});
+		try {
+			await dispatch(
+				createPost({ name: name.trim(), description: description.trim() }),
+			).unwrap();
+			setName("");
+			setDescription("");
+			await dispatch(fetchPosts());
+		} catch {
+			// createPost rejected — error state handled in slice
+		}
 	};
 
 	return (

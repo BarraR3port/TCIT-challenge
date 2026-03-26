@@ -1,9 +1,17 @@
+import { useEffect } from "react";
 import PostFilter from "./components/PostFilter";
 import PostForm from "./components/PostForm";
 import PostList from "./components/PostList";
+import { useAppDispatch } from "./store/hooks";
+import { fetchPosts } from "./store/postsSlice";
 
 export default function App() {
-	console.log("App");
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(fetchPosts());
+	}, [dispatch]);
+
 	return (
 		<div className="min-h-screen bg-zinc-100">
 			<div className="mx-auto max-w-3xl px-4 py-10">
