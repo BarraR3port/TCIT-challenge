@@ -1,3 +1,5 @@
+import PostFilter from "./components/PostFilter";
+
 export default function App() {
 	console.log("App");
 	return (
@@ -9,7 +11,7 @@ export default function App() {
 
 				<div className="space-y-6">
 					{/* Filtro */}
-					{/* <PostFilter /> */}
+					<PostFilter />
 
 					{/* Lista */}
 					{/* <PostList /> */}
