@@ -2,6 +2,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import { initDatabase } from "./config/database";
+import postRoutes from "./routes/postRoutes";
 
 dotenv.config();
 
@@ -10,6 +11,8 @@ const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/posts", postRoutes);
 
 const start = async (): Promise<void> => {
 	await initDatabase();

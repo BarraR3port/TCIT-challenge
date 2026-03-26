@@ -1,4 +1,5 @@
 import PostFilter from "./components/PostFilter";
+import PostForm from "./components/PostForm";
 
 export default function App() {
 	console.log("App");
@@ -17,7 +18,7 @@ export default function App() {
 					{/* <PostList /> */}
 
 					{/* Formulario */}
-					{/* <PostForm /> */}
+					<PostForm />
 				</div>
 			</div>
 		</div>
