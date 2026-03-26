@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import { initDatabase } from "./config/database";
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 const start = async (): Promise<void> => {
+	await initDatabase();
 	app.listen(PORT, () => {
 		console.log(`Server running on http://localhost:${PORT}`);
 	});
