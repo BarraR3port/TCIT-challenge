@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch } from "../store/hooks";
-import { createPost, fetchPosts } from "../store/postsSlice";
+import { createPost } from "../store/postsSlice";
 
 export default function PostForm() {
 	const dispatch = useAppDispatch();
@@ -16,7 +16,6 @@ export default function PostForm() {
 			).unwrap();
 			setName("");
 			setDescription("");
-			await dispatch(fetchPosts());
 		} catch {
 			// createPost rejected — error state handled in slice
 		}

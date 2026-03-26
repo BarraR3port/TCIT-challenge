@@ -78,6 +78,9 @@ export const postsSlice = createSlice({
 				state.loading = false;
 				state.error = action.error.message ?? "Unknown error";
 			})
+			.addCase(createPost.fulfilled, (state, action) => {
+				state.items = [action.payload, ...state.items];
+			})
 			.addCase(deletePost.fulfilled, (state, action) => {
 				state.items = state.items.filter(
 					(post) => post.id !== action.payload.id,
